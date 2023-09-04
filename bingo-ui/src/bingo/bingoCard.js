@@ -4,7 +4,7 @@ import getCard from "./cardGenerator";
 import BingoTracker from "./bingoTracker";
 import { useBingoCounter } from "./context-api/bCountProvider";
 import PlUid from "./plUid";
-export default function BingoCard({ userId, turn, socket, setTurn }) {
+export default function BingoCard({ userId, turn, socket, setTurn ,room}) {
   
   const [row_col, setRow_Col] = useState([0, 0]);
   const { incBingoCount, resetCount, bingoCount } = useBingoCounter();
@@ -12,9 +12,10 @@ export default function BingoCard({ userId, turn, socket, setTurn }) {
   // socket.on("iLose",()=>{
   //   console.log("i lost")
   // })
-  socket.on("getPosition", ({ value, turn }) => {
-    FindValue(value);
-    setTurn(turn);
+  socket.on("getPosition", async ({ value, turn }) => {
+    console.log(value)
+    await FindValue(value);
+    await setTurn(turn);
   });
 
   function FindValue(value) {
@@ -88,7 +89,7 @@ export default function BingoCard({ userId, turn, socket, setTurn }) {
   }, [bingoCard]);
 
   useEffect(() => {
-    socket.emit("bingoCount", bingoCount);
+    socket.emit("bingoCount", bingoCount,room);
   }, [bingoCount]);
 
   return (

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Web UI</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+
+<div class="flex h-screen">
+    <!-- Chat List Sidebar -->
+    <div class="w-1/4 bg-white border-r border-gray-300">
+        <!-- Header -->
+        <div class="py-4 px-6 border-b border-gray-300">
+            <h1 class="text-xl font-semibold">WhatsApp Web</h1>
+        </div>
+        
+        <!-- Search Bar -->
+        <div class="py-2 px-4 border-b border-gray-300">
+            <input type="text" class="w-full py-1 px-2 rounded-full bg-gray-100 focus:outline-none" placeholder="Search chats">
+        </div>
+        
+        <!-- Chat List -->
+        <ul class="flex flex-col divide-y divide-gray-300 overflow-y-auto">
+            <li class="py-3 px-6 flex items-center space-x-4 hover:bg-gray-200">
+                <img src="profile_image_url" alt="Profile" class="w-10 h-10 rounded-full">
+                <div>
+                    <h2 class="text-lg font-semibold">Contact Name</h2>
+                    <p class="text-sm text-gray-500">Last message...</p>
+                </div>
+            </li>
+            <!-- Repeat the above list item structure for each chat -->
+        </ul>
+    </div>
+    
+    <!-- Chat Area -->
+    <div class="flex-1 bg-white">
+        <!-- Chat Header -->
+        <div class="py-4 px-6 border-b border-gray-300 flex items-center">
+            <img src="profile_image_url" alt="Profile" class="w-10 h-10 rounded-full">
+            <div class="ml-3">
+                <h2 class="text-lg font-semibold">Contact Name</h2>
+                <p class="text-sm text-gray-500">Online</p>
+            </div>
+        </div>
+        
+        <!-- Chat Messages -->
+        <div class="flex-1 p-6 overflow-y-auto">
+            <!-- Repeat the below message structure for each message -->
+            <div class="flex mb-4">
+                <div class="bg-gray-200 py-2 px-4 rounded-lg max-w-lg">
+                    <p class="text-sm">This is a message from the contact.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Message Input -->
+        <div class="p-4 border-t border-gray-300">
+            <input type="text" class="w-full py-2 px-3 rounded-full bg-gray-100 focus:outline-none" placeholder="Type a message...">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
