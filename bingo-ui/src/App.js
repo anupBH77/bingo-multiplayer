@@ -1,6 +1,6 @@
 import "./App.css";
 import BingoCard from "./bingo/bingoCard";
-
+import {CopyIcon,ArrowRight} from 'lucide-react'
 import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 import LoadingIcon from "./bingo/loadingIcon";
@@ -8,6 +8,7 @@ import popup, { Popup } from "reactjs-popup";
 import "../node_modules/reactjs-popup/dist/index";
 import { useBingoCounter } from "./bingo/context-api/bCountProvider";
 import PopupLayout from "./bingo/popupLayout";
+import { useLocation } from "react-router";
 function App() {
   const [plId,setPlId]= useState(null);
   const [roomId,setRoomId]= useState('');
@@ -37,8 +38,10 @@ function App() {
   }, [bingoCount]);
 
 
+  // const {pathname}= useLocation()
+  // console.log(pathname)
   useEffect(() => {
-    const newSocket =  io("http://localhost:5000");
+    const newSocket =  io("http://localhost:5000/");
     newSocket.on(
       "connect",
       () => {
@@ -108,14 +111,14 @@ function App() {
   }
 
   return (
-    <div className="App relative">
-      <p className=" text-lg shadow-inner font-semibold font-mono text-slate-400 bg-slate-950 p-6 shadow shadow-slate-900  border-b border-gray-200 text-white" >B I N G O - U I </p>
+    <div className="App font-mono  ">
+      <p className=" text-lg  font-semibold font-mono text-slate-400 bg-slate-950 p-6 shadow shadow-slate-900  border-b border-gray-200 text-white" >B I N G O - U I </p>
       <Popup open={isSelect}>
         <PopupLayout>
-          <div className="  w-full p-0 justify-between">
+          <div className="   w-full p-0 justify-between rounded-lg">
             <div className=" w-full flex justify-between ">
             <button
-            class=" bg-sky-500 hover:bg-sky-600 text-white font-semibold w-[40%] rounded-sm outline-none"
+            class="font-mono transition  bg-sky-400 hover:bg-sky-600 text-white  w-[40%] rounded-lg outline-none"
             onClick={() => {
              setOnline(true);
             }}
@@ -123,7 +126,7 @@ function App() {
             Online
           </button>
           <button
-            className=" bg-sky-500 hover:bg-sky-600 text-white font-semibold w-[40%] py-2 rounded-sm outline-none"
+            className="font-mono transition  rounded-lg bg-sky-400 hover:bg-sky-600 text-white  w-[40%] py-2  outline-none"
             onClick={() => {
               setPlId(socket.id.slice(14));
             }}
@@ -131,20 +134,20 @@ function App() {
             Host
           </button>
             </div>
-            {plId?<div className="mt-2  rounded-sm w-full flex justify-between border border-gray-400">
-              <span className="text-slate-800   w-[70%] outline-none p-2" >{plId}</span>
-              <button className="w-[30%] bg-green-500   font-semibold text-white" onClick={()=>{setHost(true)}}>Go</button>
+            {plId?<div className="mt-2 transition bg-gray-300 rounded-lg w-full  flex justify-between  ">
+              <span className="text-slate-800   w-[70%] font-mono  outline-none p-2" >{plId}</span>
+              <button className="w-[30%] bg rounded-lg   font-semibold text-white bg-gray-300" onClick={()=>{setHost(true)}}><ArrowRight className=" w-5 h-5 m-auto text-black"/></button>
             </div>:null}
             
-            <div className="mt-2  rounded-sm w-full flex justify-between border border-gray-400">
-              <input className="  w-[70%] outline-none p-2" value={roomId} onChange={(event)=>{setRoomId(event.target.value)}}></input>
-              <button className="w-[30%] bg-green-500 font-semibold text-white" onClick={()=>{setJoin(true)}}>Join</button>
+            <div className="mt-2 bg-gray-300 rounded-lg w-full flex justify-between ">
+              <input className="   bg-gray-300 rounded-lg w-[70%] outline-none p-2" value={roomId} onChange={(event)=>{setRoomId(event.target.value)}}></input>
+              <button className="w-[30%] font-mono  bg-green-500 font-semibold text-white" onClick={()=>{setJoin(true)}}>Join</button>
             </div>
           </div>
         </PopupLayout>
       </Popup>
       <Popup open={title.open}>
-        <PopupLayout>\
+        <PopupLayout>
           <div>
 
           <p class="pmt-4 text-xl font-semibold">{title.message}</p>

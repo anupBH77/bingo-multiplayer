@@ -93,7 +93,7 @@ export default function BingoCard({ userId, turn, socket, setTurn ,room}) {
   }, [bingoCount]);
 
   return (
-    <div className="  z-0 bg-slate-950  flex  justify-center items-center h-screen ">
+    <div className="  z-0 bg-slate-950   flex  justify-center items-center h-screen ">
       <div className="w-64  rounded-sm p-2 m-auto  bg-gray-300  font-mono ring-8 ring-gray-600 ring-opacity-25 shadow-2xl shadow-white ">
         <BingoTracker />
         <div className=" my-4">
